@@ -25,7 +25,7 @@ tags : [Selenium,Webdriver]
 
 ![theory](/assets/images/selenium-and-webdriver-theory/1347428843_7377.png)
 
-从上图中我们可以看出，不同浏览器的WebDriver子类，都需要依赖特定的浏览器原生组件，例如Firefox就需要一个add-on名字叫`webdriver.xpi`。而IE的话就需要用到一个dll文件来转化Web Service的命令为浏览器native的调用。另外，图中还标明了`ebDriver Wire`协议是一套基于RESTful的web service。如果不明白什么是RESTful的，可以参见笔者之前另外一篇介绍REST的[log](http://blog.csdn.net/ant_yan/article/details/7963517)
+从上图中我们可以看出，不同浏览器的WebDriver子类，都需要依赖特定的浏览器原生组件，例如Firefox就需要一个add-on名字叫`webdriver.xpi`。而IE的话就需要用到一个dll文件来转化Web Service的命令为浏览器native的调用。另外，图中还标明了`ebDriver Wire`协议是一套基于RESTful的web service。如果不明白什么是RESTful的，可以参见笔者之前另外一篇介绍REST的[log:http://blog.csdn.net/ant_yan/article/details/7963517](http://blog.csdn.net/ant_yan/article/details/7963517)
 
 关于WebDriver Wire协议的细节，比如希望了解这套Web Service能够做哪些事情，可以阅读Selenium官方的协议文档， 在Selenium的源码中，我们可以找到一个HttpCommandExecutor这个类，里面维护了一个`Map<String, CommandInfo>`，它负责将一个个代表命令的简单字符串key，转化为相应的URL，因为REST的理念是将所有的操作视作一个个状态，每一个状态对应一个URI。所以当我们以特定的URL发送HTTP request给这个RESTful web service之后，它就能解析出需要执行的操作。截取一段源码如下：
 
